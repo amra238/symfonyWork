@@ -9,3 +9,23 @@
 
 controllers:
     resource: routing.controllers
+
+#hello_page:
+#    path: /hello
+#    controller: App\Controller\DefaultController::hello
+blog_show:
+    path: /blog/{id}
+    controller: App\Controller\BlogController::show
+    defaults:
+        page: 1
+    requirements:
+        id: '\d+'
+contact_page:
+    path: /contact
+    controller: App\Controller\ContactController::index()
+
+product_page:
+    path: /poduct/{slug}
+    controller: App\Controller\ProductController::index()
+    requirements:
+        name: '[\a-zA-Z-]+'
