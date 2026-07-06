@@ -6,6 +6,8 @@ security:
         # Вариант 2: конкретно для вашей сущности
         App\Entity\User: 'auto'
     access_control:
+        - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/profile, roles: ROLE_USER }
     providers:
@@ -14,6 +16,10 @@ security:
                 class: App\Entity\User
                 property: email
     firewalls:
+        api:
+            pattern: ^/api
+            stateless: true
+            jwt: ~
         main:
             provider: app_user_provider
             form_login:
